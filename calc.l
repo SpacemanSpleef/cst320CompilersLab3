@@ -1,5 +1,8 @@
 %{
 #include <stdio.h>
+#include "lex.h"
+#include "tokens.h"
+#include "utils.h"
 %}
 
 %option noyywrap
@@ -32,10 +35,8 @@ NUM        {DIGIT}+
 "{"             { return '{'; }
 "}"             { return '}'; }
 
-/* Whitespace */
 [ \t\r\n]+      { }
 
-/* Catch invalid characters */
 .               { }
 
 %%

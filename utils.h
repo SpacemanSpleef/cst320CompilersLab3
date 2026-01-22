@@ -8,10 +8,10 @@
 // NOTE:
 //    You can use either PeekToken()/AdvanceToken() or GetToken()/UngetToken() 
 //    but you can not use both sets of functions in the same program.
-
+#include <string.h>
 // used to print error messages in a standard format.
 // expecting is the string representation of the token the parser was expecting.
-void Error(std::string expecting);
+void Error(const char * expecting);
 
 // Peek a token witout removing it from the input stream
 int PeekToken();

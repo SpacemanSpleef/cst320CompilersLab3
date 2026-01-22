@@ -16,7 +16,7 @@ using std::cout;
 static int g_token = -1;
 
 //*******************************************
-void Error(std::string expecting)
+void Error(const char * expecting)
 {
     if (yytext != NULL && strlen(yytext) > 0)
         cout << "Found '" << yytext << "' when expecting a " << expecting;

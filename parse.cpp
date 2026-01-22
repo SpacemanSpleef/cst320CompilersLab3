@@ -12,19 +12,27 @@
 #include "lex.h"
 #include "parse.h"
 #include "utils.h"
+#include "tokens.h"
 
 //*******************************************
 // Find a PROG non-terminal
 // NOTE: this code is not complete
 bool FindPROG()
 {
-    // if (didn't find program)
+    if (!FindSTMTS())
     {
         Error("Program");
         return false;
     }
-    // else
+    else
     {
+        int token = PeekToken();
+        if (token != END)
+        {
+            Error("END");
+            return false;
+        }
+        AdvanceToken();
         return true;
     }
 
@@ -34,17 +42,55 @@ bool FindPROG()
 // NOTE: this code is not complete
 bool FindSTMT()
 {
-    // if (didn't find STMT)
+    if (!FindEXPR())
     {
+        Error("Expression");
         return false;
     }
-    // else
+    else
     {
+        int token = PeekToken();
+        if(token != ';')
+        {
+            return false;
+        }
         std::cout << "Found a statement\n";
         return true;
     }
 
 }
+bool FindSTMTS()
+{
+    while(FindSTMT())
+    {}
+
+    return true;
+}
+bool FindEXPR()
+{
+    return false;
+}
+bool FindEXPR_P()
+{
+    return false;
+}
+bool FindPLUSOP()
+{
+    return false;
+}
+bool FindTERM()
+{
+    return false;
+}
+bool FindTERM_P()
+{
+    return false;
+}
+bool FindTIMESOP()
+{
+    return false;
+}
+
 /*******************************************
 bool FindExample()
 {
