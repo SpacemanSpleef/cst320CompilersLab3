@@ -42,12 +42,7 @@ bool FindPROG()
 // NOTE: this code is not complete
 bool FindSTMT()
 {
-    if (!FindEXPR())
-    {
-        Error("Expression");
-        return false;
-    }
-    else
+    if (FindEXPR())
     {
         int token = PeekToken();
         if(token != ';')
@@ -57,6 +52,29 @@ bool FindSTMT()
         std::cout << "Found a statement\n";
         return true;
     }
+    else if(PeekToken() == IDENTIFIER)
+    {
+        AdvanceToken();
+        if(PeekToken() == '=')
+        {
+            AdvanceToken();
+            if(FindEXPR())
+            {
+                AdvanceToken();
+                if(PeekToken() != ';')
+                {
+                    return false;
+                } 
+                else
+                {
+                    std::cout << "Found a statement\n";
+                    return true;
+                }
+            }
+        }
+    }
+    Error("Expression");
+    return false;
 
 }
 bool FindSTMTS()
@@ -68,7 +86,26 @@ bool FindSTMTS()
 }
 bool FindEXPR()
 {
-  return false; 
+    int token = PeekToken();
+    if(token == '(')
+    {
+        AdvanceToken();
+        if(FindEXPR())
+        {
+            token = PeekToken();
+            if(token ==')')
+            {
+                if(FindEXPR_P())
+                {
+                    return true;
+                }
+            }
+        }
+    } else if(FindTERM())
+    {
+        return true;
+    }
+    return false;
 }
 bool FindEXPR_P()
 {
@@ -87,7 +124,7 @@ bool FindPLUSOP()
 }
 bool FindTERM()
 {
-    return false;
+    return true;
 }
 bool FindTERM_P()
 {
