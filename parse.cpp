@@ -68,7 +68,7 @@ bool FindSTMTS()
 }
 bool FindEXPR()
 {
-    return false;
+  return false; 
 }
 bool FindEXPR_P()
 {
@@ -76,6 +76,13 @@ bool FindEXPR_P()
 }
 bool FindPLUSOP()
 {
+    int token;
+    token = PeekToken();
+    if(token == '+' || token == '-')
+    {
+        AdvanceToken();
+        return true;
+    }
     return false;
 }
 bool FindTERM()
@@ -88,6 +95,13 @@ bool FindTERM_P()
 }
 bool FindTIMESOP()
 {
+    int token;
+    token = PeekToken();
+    if(token == '*' || token == '/')
+    {
+        AdvanceToken();
+        return true;
+    }
     return false;
 }
 
