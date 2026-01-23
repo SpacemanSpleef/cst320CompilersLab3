@@ -37,7 +37,7 @@ NUM        {DIGIT}+
 
 [ \t\r\n]+      { }
 
-.               { }
+.               {return JUNK_TOKEN;}
 
 %%
 
