@@ -36,8 +36,9 @@ NUM        {DIGIT}+
 "}"             { return '}'; }
 
 [ \t\r\n]+      { }
+"//".*          { }
 
-.               {return JUNK_TOKEN;}
+[.%]               { return JUNK_TOKEN; }
 
 %%
 
