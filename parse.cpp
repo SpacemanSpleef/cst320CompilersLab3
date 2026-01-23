@@ -72,7 +72,7 @@ bool FindSTMT()
 } 
 bool FindSTMTS() 
 { 
-    while(FindSTMT()) 
+    while(FindSTMT() && PeekToken() != END) 
     {}
     return true; 
 }
